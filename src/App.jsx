@@ -1,28 +1,33 @@
-import React, { useCallback, useState, useMemo } from "react";
-import { ChildArea } from "./ChildArea";
+import { BrowserRouter } from "react-router-dom";
+import { PrimaryButton } from "./components/atoms/button/PrimaryButton";
+import { SecondaryButton } from "./components/atoms/button/SecondaryButton";
+import { SearchInput } from "./components/molecules/SearchInput";
+import { UserCard } from "./components/organisms/user/UserCard";
+import { DefaultLayout } from "./components/templates/DefaultLayout";
+
 import "./styles.css";
 
+const user = {
+  name: "てすと名前",
+  image: "https://source.unsplash.com/NE0XGVKTmcA",
+  email: "12345@example.com",
+  phone: "000-1111-2222",
+  company: {
+    name: "テスト株式会社"
+  },
+  website: "https://google.com"
+};
+
 export const App = () => {
-  console.log("App");
-  const [text, setText] = useState("");
-  const [open, setOpen] = useState(false);
-
-  const onChangeText = (event) => setText(event.target.value);
-
-  const onClickOpen = () => setOpen(!open);
-
-  const onClickClose = useCallback(() => setOpen(false), [setOpen]);
-
-  const temp = useMemo(() => 1 + 3, []);
-  console.log(temp);
-
   return (
-    <>
-      <input value={text} onChange={onChangeText} />
-      <br />
-      <br />
-      <button onClick={onClickOpen}>表示</button>
-      <ChildArea open={open} onClickClose={onClickClose} />
-    </>
+    <BrowserRouter>
+      <DefaultLayout>
+        <PrimaryButton>テスト</PrimaryButton>
+        <SecondaryButton>検索</SecondaryButton>
+        <br />
+        <SearchInput />
+        <UserCard user={user} />
+      </DefaultLayout>
+    </BrowserRouter>
   );
 };
