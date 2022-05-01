@@ -1,2 +1,2 @@
-# React-StepUp-Atomic
+# React-StepUp
 Created with CodeSandbox
